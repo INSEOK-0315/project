@@ -5,5 +5,6 @@
 4. LANGUAGE - JAVA
    WEB - HTML, CSS, SERVLET/JSP, JAVASCRIPT, JQUERY, AJAX, JSON, JSTL
    FRAMWORK - SPRING FRAMEWORK, MYBATIS 
-5. (필요한 경우) ERD                   
+5. ERD                   
+![BLOG ERD맵](https://github.com/INSEOK-0315/project/assets/146906521/17a220dd-9a16-4a7d-8d78-59583a6fad13)
 
