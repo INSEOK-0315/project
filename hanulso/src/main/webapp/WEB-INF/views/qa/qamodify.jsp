@@ -11,7 +11,7 @@
 	  <div class="write_wrap">
 	  <h2 class="sr-only">질문과 답변 글쓰기</h2>
 	  <form name="qa" method="post" action="modifypro" >
-	  <!-- action을 처리하기전에 check()사용자 함수를 실행하고 되돌아 와라-->
+	  <input type = "hidden" name="bno" value="${view.qbno}" >
 			<table class="bord_table">
 				<caption class="sr-only">공지사항 입력 표</caption>
 				<colgroup>
