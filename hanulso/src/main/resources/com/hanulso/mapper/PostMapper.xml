@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace = "com.hanulso.mapper.PostMapper">
+	<sql id="criteria">
+		<choose>
+			<when test="type == 'T'.toString()">
+				(title like '%'||#{keyword}||'%') and			
+			</when>
+			<when test="type == 'C'.toString()">
+				(content like '%'||#{keyword}||'%') and
+			</when>
+			<when test="type == 'W'.toString()">
+				(writer like '%'||#{keyword}||'%') and
+			</when>
+		</choose>
+	</sql>
+	
+	<insert id = "SavePost">
+		<selectKey keyProperty="bno" order="BEFORE" resultType="int">
+			select post_seq.nextval from dual
+		</selectKey>
+		insert into post (bno,title,writer,content,imgurl,regdate,viewcount)
+		values(#{bno},#{title},#{writer},#{content},#{imgurl},sysdate,0)
+	</insert>
+	
+	<select id ="ViewPost" resultType="com.hanulso.dto.PostDTO">
+		select * from post where bno = #{bno}
+	</select>
+	
+	<select id = "DeletePost" resultType="com.hanulso.dto.PostDTO">
+		delete from post where bno = #{bno}
+	</select>
+	
+	<update id = "UpdatePost">
+		update post set title=#{title}, content=#{content}, imgurl=#{imgurl} where bno = #{bno}
+	</update>
+	
+	<select id = "nextPage" resultType="com.hanulso.dto.PostDTO">
+		<![CDATA[
+			select * from post where bno < #{bno} and rownum = 1 order by bno desc
+		]]>
+	</select>
+	
+	<select id = "prevPage" resultType="com.hanulso.dto.PostDTO">
+		<![CDATA[
+			select * from post where bno > #{bno} and rownum = 1 order by bno asc
+		]]>	
+	</select>
+	
+	<select id ="ListPost" resultType="com.hanulso.dto.PostDTO">
+		<![CDATA[
+			select * from 
+			(select /*+ index_desc(post post_pk)*/ 
+			rownum rn, bno,title,content,imgurl, regdate, viewcount
+			from post where
+		]]>
+		
+		<include refid="criteria"/>
+		
+		<![CDATA[
+			rownum <= #{pageNum} * #{amount} order by bno desc
+			) where rn > (#{pageNum}-1) * #{amount}
+		]]>
+	</select>
+	
+	<select id = "TotalCount" resultType ="int">
+			select count(*) from post
+		<include refid="criteria"/>
+	</select>
+	
+	<update id = "ViewCount">
+		update post set viewcount = viewcount + 1 where bno = #{bno}
+	</update>
+	
+</mapper>

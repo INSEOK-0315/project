@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatis.org/DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace = "com.hanulso.mapper.QaMapper">
+	<sql id="criteria">
+		<choose>
+			<when test="type == 'T'.toString()">
+				(title like '%'||#{keyword}||'%') and			
+			</when>
+			<when test="type == 'C'.toString()">
+				(content like '%'||#{keyword}||'%') and
+			</when>
+			<when test="type == 'W'.toString()">
+				(writer like '%'||#{keyword}||'%') and
+			</when>
+		</choose>
+	</sql>
+
+	<insert id = "InsertQa">
+		<selectKey keyProperty="qbno" order="BEFORE" resultType="int">
+			select qa_seq.nextval from dual
+		</selectKey>
+		insert into qa(qbno,title,content,writer,regdate,viewcount,state)
+		values(#{qbno},#{title},#{content},#{writer},sysdate,0,1)
+	</insert>
+	
+	<select id = "ListQa" resultType="com.hanulso.dto.QaDTO">
+		<![CDATA[
+			select * from 
+			(select /*+ index_desc(qa qa_pk)*/
+			rownum rn, qbno,title,content,writer,regdate,viewcount,state
+			from qa where
+		]]>
+		
+			<include refid="criteria"/>
+				
+		<![CDATA[	
+			rownum <= #{pageNum} * #{amount}
+			) where rn between (#{pageNum}-1) and #{amount}
+		]]>
+	</select>
+	
+	<select id = "nextPage" resultType="com.hanulso.dto.QaDTO">
+		<![CDATA[
+			select * from qa where qbno < #{qbno} and rownum = 1 order by qbno desc
+		]]>
+	</select>
+	
+	<select id = "prevPage" resultType="com.hanulso.dto.QaDTO">
+		<![CDATA[
+			select * from qa where qbno > #{qbno} and rownum = 1 order by qbno asc
+		]]>	
+	</select>
+	
+	<select id ="TotalCount" resultType="int">
+		select count(*) from qa where 
+		
+			<include refid="criteria"/>
+		
+		<![CDATA[	
+			qbno > 0
+		]]>
+	</select>
+	
+	<resultMap type = "com.hanulso.dto.QaDTO" id ="QaMap">
+		<id property = "qbno" column = "qbno"/>
+		<result property = "qbno" column = "qbno"/>
+		<result property = "writer" column = "writer"/>
+		<result property = "title" column = "title"/>
+		<result property = "content" column = "content"/>
+		<result property = "regdate" column = "regdate"/>
+		<result property = "state" column = "state"/>
+		<result property = "viewcount" column = "viewcount"/>
+		<collection property ="QaReplyDTO" resultMap = "QaReplyMap"/> 
+		<!-- mybatis collection 태그 : 여러개의 값을 담을 때 사용 , collection의 이름과 같은 id를 찾아감  -->
+	</resultMap>
+	
+	<resultMap type = "com.hanulso.dto.QaReplyDTO" id ="QaReplyMap">
+		<result property = "rbno" column = "rbno"/>
+		<result property = "awriter" column = "awriter"/>
+		<result property = "acontent" column = "acontent"/>
+		<result property = "aregdate" column = "aregdate"/>
+		<result property = "qbno" column = "qbno"/>
+	</resultMap>
+	
+	<select id = "ViewQa" parameterType = "com.hanulso.dto.QaDTO" resultMap="QaMap">
+		select q.qbno, q.writer, q.title, q.content, q.regdate, q.viewcount, q.state, 
+		r.rbno,r.acontent, r.awriter, r.aregdate
+		from qa q 
+		left outer join qareply r on q.qbno = r.qbno
+		where q.qbno = #{qbno}
+	</select>
+	
+	<delete id = "DeleteQa">
+		delete from qa where qbno = #{qbno}
+	</delete>
+	
+	<update id = "UpdateProQa">
+		update qa set title=#{title}, writer=#{writer}, content=#{content} where qbno = #{qbno}
+	</update>
+	
+	<update id = "UpdateQaState">
+		update qa set state = 2 where qbno=#{qbno}
+	</update>
+	
+	<update id = "UpdateQaState2">
+		update qa set state = 1 where qbno=#{qbno}
+	</update>
+	
+	<update id = "ViewCount">
+		update qa set viewcount = viewcount + 1 where qbno = #{qbno}
+	</update>
+	
+</mapper>
