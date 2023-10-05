@@ -10,6 +10,7 @@
 	  <div class="write_wrap">
 	  <h2 class="sr-only">공지사항 수정하기</h2>
 	  <form name="notice" method="post" action="modifypro" onsubmit="return check()">
+	<input type = "hidden" name="bno" value="${view.bno}" >
 		<table class="bord_table">
 			<caption class="sr-only">공지사항 입력 표</caption>
 			<colgroup>
