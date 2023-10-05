@@ -20,7 +20,7 @@
 					<tbody>
 						<tr class="first">
 							<th>글쓴이</th>
-							<td><input type="text" name="writer" value="${user.id}"></td>
+							<td><input type="text" name="writer" value="${user.id}" readonly></td>
 						</tr>
 						<tr>
 							<th>제목</th>
