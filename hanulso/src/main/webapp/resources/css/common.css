@@ -1,0 +1,282 @@
+@charset "utf-8";
+
+@import url("http://fonts.googleapis.com/earlyaccess/notosanskr.css");
+body        { font-family: 'Noto Sans KR', sans-serif; font-weight:300; }
+
+.normal     { font-weight: 400 }
+.bold       { font-weight: 700 }
+.bolder     { font-weight: 800 }
+.light      { font-weight: 300 }
+
+/* reset css */
+
+* {margin:0; padding:0; box-sizing:border-box;}
+
+/* 
+width:275px; padding:10; 실제가로폭은? 295px 
+box-sizing:border-box css 적용하면 실제가폭은? 275px
+*/
+
+ul, ol {list-style:none;}
+a {text-decoration:none; color:#333;}
+body {font-family:나눔고딕; color:#333;}
+header, nav, section, article, footer {display:block;}
+h1,h2,h3,h4,h5,h6 {font-weight:normal; font-size:16px;}
+table,th,tr,td {border-collapse:collapse;}
+fieldset {border:0 none;}
+
+
+.sr-only {position:absolute; top:0; left:0; width:0; height:0; font-size:0; overflow:hidden;}
+
+.w100 {
+  width:100%; 
+  height:650px;
+  text-align: center;
+  position: relative;
+}
+.w100::after {
+  width: 100%;
+  height: 100%;
+  content: "";
+  background: url("resources/images/바리스타.jpg");
+  position: absolute;
+  top: 0;
+  left: 0;
+}	
+
+.clearfix {content:""; display:block; clear:both;}
+#main_visual {position:relative;}
+#main_visual .visual_inner {width:1100px; position:absolute; left:50%; top:100px; margin-left:-550px;}
+#main_visual .visual_inner .title {font-size:32px; color:#000; letter-spacing:15px; line-height:140%; margin-bottom:25px; color:#fff;
+text-shadow:1px 1px 2px rgba(0,0,0,0.3);}
+
+
+#main_visual .visual_inner strong {}
+#main_visual .visual_inner .txt {line-height:150%; color:#fff; text-shadow:1px 1px 2px rgba(0,0,0,0.3);}
+
+
+/*notice css*/
+.Searchbox{
+	padding-top:40px;
+}
+
+.noticebox h2{
+	text-align:center;
+}
+
+.notice_list {
+	clear:both; 
+	padding-top:40px;
+	}
+.notice_table {
+	width:100%;
+	margin:auto;
+	}
+.notice_list th {border-top:1px solid #333;border-bottom:1px solid #333; padding:15px 5px; text-align:center;}
+.notice_table td {border-bottom:1px solid #e0e0e0; padding:15px 5px; text-align:center;}
+.notice_table td.title {text-align:center;}
+
+
+
+.write_wrap {margin-top:100px;}
+.write_wrap th,.write_wrap td {padding:10px;border-bottom:1px solid #ddd;}
+.write_wrap th {background:#f7f8fc; text-align:center;}
+.write_wrap .first th,.write_wrap .first td {border-top:1px solid #333;}
+.write_wrap td {padding : 10px; margin : 10px; text-align:left;}
+.write_wrap input,.write_wrap textarea {border:1px solid #dcdcdc; height:33px; width:100%; padding-right:10px; padding-left:10px;}
+.write_wrap textarea {height:270px; padding: 10px;}
+.write_wrap .btn_wrap {padding-top:30px; text-align:center;}
+.write_wrap .btn_wrap .btn_ok {width:60px; background:#f7f8fc; border:1px solid #333; color:#000;}
+.write_wrap .btn_wrap .btn_reset {width:90px;background:#f7f8fc; border:1px solid #333; color:#000;}
+.write_wrap .btn_wrap .btn_list {width:70px;background:#f7f8fc; border:1px solid #333; color:#000;}
+
+/*notice view*/
+.board_view {margin-top:100px;}
+.board_view h2 {margin-bottom:16px; font-size:32px; letter-spacing:-1px; text-align:center;}
+.board_view .info {font-size:18px; text-align:center;}
+.board_view .info .user {color:#007dc6;}
+.board_body {padding:60px 50px; border-top:1px solid #ddd; border-bottom:1px solid #ddd; margin-top:35px;}
+.board_body .postcontent{text-align:center;}
+.board_body p {margin-bottom:15px}
+.prev_next {margin-top:50px; height:67px; position:relative;}
+.prev_next .btn_prev {text-align:left; width:30%; display:inline-block; position:absolute; left:0; }
+.prev_next .btn_next {text-align:right; width:30%;display:inline-block; position:absolute; right:0;}
+.prev_next .btn_3wrap {position:absolute; left:50%;transform:translate(-50%,0); /* scale(크기),skew(기울이기),rotate(회전),teanslate(이동) */ }
+.prev_next i {width:56px; height:56px; line-height:56px; border:1px solid #ddd; font-size:22px; text-align:center;}
+.prev_next .prev_wrap, .prev_next .next_wrap {padding:5px 15px 0; display:inline-block;  height:56px;}
+.prev_next .prev_wrap span, .prev_next .next_wrap span {display:block;}
+.btn_3wrap a {padding:12px 18px; display:inline-block; border:1px solid #878787;}
+
+.complet {background:#8893ab; color:#fff;padding:5px 8px;}
+.waiting {background:#0489B1; color:#fff;padding:5px 8px;}
+
+.HeadContainer {width:1100px; height: 55px; margin:0 auto;}
+.sub_title {clear:both; position:relative;background:#eee; height:318px;}
+.sub_title:after { /* url(이미지경로) no-repeat center center;background-size:cover;*/ }
+.sub_title h2 {padding:110px 0; text-align:center; font-size:40px; margin-bottom: 0px;
+    margin-top: 0px;}
+.location {width:100%; height:55px; border-bottom:1px solid #e0e0e0; background:#fff;}
+.location > ul {height:54px; float:left; display:inline-block;}
+.location .btn_home {width:55px; height:100%; background:#007dc6;float:left; text-align:center; line-height:54px;}
+.location .btn_home a { color:#fff; font-size:32px;}
+.location .dropdown {float:left; width:230px; height:100%; position:relative;}
+.location .dropdown > a {display:block; color:#636363; text-align:left; width:100%; height:55px; padding:16px 40px 16px 20px; border-right:1px solid #e0e0e0;}
+.location .dropdown > a > .btn_plus {position:absolute; right:15px;width:22px; height:22px; padding:5px;}
+
+.location .dropdown_menu {display:none;}
+.location .dropdown_menu {background:#fff; border:1px solid rgba(0,0,0,.15);}
+.location .dropdown_menu > a {display:block; color:#212529; padding:16px 24px;}
+.location .dropdown > a:hover {background-color:#e6e6e6;}
+.location .dropdown_menu > a:hover {background-color:#f8f9fa;}
+
+/* post css */
+
+.postbox p,
+.postbox h2,
+.postbox h3 {
+	text-align:center;
+}
+.postbox .container {
+	text-align:center;
+}
+.postbox .innerbox_box{
+	margin:auto;
+    width: 300px;
+    height: 300px; 
+    border-radius: 70%;
+    overflow: hidden;
+}
+.postimg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.post_list{
+	clear:both;
+	padding-top:40px;
+}
+
+.post_list .subcontent-inner {
+	border-bottom:1px solid #e0e0e0;
+	padding-top:20px; 
+	height:300px;
+}
+
+.post_list .subimg{
+	float:left;
+    width: 200px;
+    height: 200px; 
+    border-radius: 70%;
+    overflow: hidden;
+}
+
+
+.post_list .subcont{
+	width:850px;
+	height:200px;
+	float:left;
+	padding-left:20px;
+}
+.post_count{
+	margin:0px;
+	width:200px;
+	padding-top:20px;
+	padding-bottom:20px;
+	float:left;
+}
+
+.post_list h2{
+	text-align:center;
+}
+
+.post_info{
+	vertical-align:bottom;
+}
+
+.post_table{
+	width:100%;
+	margin:auto;
+}
+
+.reply{
+	padding-top:15px;
+}
+
+.replylist li{
+	border-bottom:1px solid #e0e0e0;
+	padding-top:20px;
+	padding-bottom:20px;
+}
+
+.replylist ul{
+	padding-left:0px;
+} 
+
+/* login css */
+.loginbox h2{
+	text-align:center;
+}
+
+.login_box{
+	margin:0 auto;
+	width:390px;
+	height:190px;
+	
+}
+
+.login_text{
+	width: 100%;
+    margin: 0;
+    padding: 18px 19px 19px;
+    box-sizing: border-box;
+}
+.login_text input {
+	vertical-align: middle;
+	display: block;
+    width: 100%;
+    height: 100%;
+    font-size: 13px;
+    color: #000;
+    border: none;
+    outline: 0;
+    -webkit-appearance: none;
+}
+
+.login_form{
+	margin: 35px 0 0;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    background-color: #fff;
+    box-sizing: border-box;
+}
+.login_text+.login_text{
+	border-top: 1px solid #ddd;
+}
+
+.login_box button{
+	background-color: #b9b9b9;
+	margin: 20px 0 0;
+    width: 48%;
+    height: 48px;
+    border-radius: 3px;
+    font-size: 16px;
+    color: #fff;
+    border:none;
+}
+
+.login_btn{
+	text-align:center;
+}
+
+
+.login_button button{
+	width:100%;
+}
+
+.table_join {
+	marign:auto;
+}
+.member_box{
+	border:1px solid #ddd;
+}
