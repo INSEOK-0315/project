@@ -1,9 +1,9 @@
 # project
-1. 프로젝트 제목/주제
-2. Demo 링크
-3. 제작 기간 & 참여 인원
-4. 사용한 기술 (기술 스택)
+1. 개인 포트폴리오 / 개인이 운영하는 BLOG 제작
+2. BLOG 프로젝트 
+3. 제작 기간 - 20230.09.02~ 10.03
+4. LANGUAGE - JAVA
+   WEB - HTML, CSS, SERVLET/JSP, JAVASCRIPT, JQUERY, AJAX, JSON, JSTL
+   FRAMWORK - SPRING FRAMEWORK, MYBATIS 
 5. (필요한 경우) ERD                   
-6. 핵심 기능 (코드로 보여주거나 코드 링크)
-7. 트러블슈팅 경험 / 자랑하고 싶은 코드
-8. 회고 / 느낀 점
+
